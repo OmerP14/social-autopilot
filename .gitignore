@@ -1,0 +1,43 @@
+# Gizli anahtarlar
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Üretilen dosyalar ve veritabanı
+output/*
+!output/.gitkeep
+data/*
+!data/.gitkeep
+
+# Müşteri fotoğraf/videoları (repoya girmez, sunucuya ayrıca kopyalanır)
+clients/*/photos/**/*
+!clients/*/photos/**/
+!clients/*/photos/**/.gitkeep
+clients/*/videos/*
+!clients/*/videos/.gitkeep
+
+# macOS
+.DS_Store
+
+# Takip paneli (üretilir) ve yedekler
+panel/
+backups/
+
+# Firmaların müzikleri (sunucuda tutulur)
+clients/*/music/
+
+# Tasarım üretiminin geçici klasörleri (sunucuda oluşur)
+clients/*/design_new/
+clients/*/design_prev/
+clients/*/design_options/
+
+# Yerel deploy ayarları ve kişisel notlar
+deploy/deploy.env
+*.local.md

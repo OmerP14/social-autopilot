@@ -1,0 +1,24 @@
+# MEDIA_HOST: sunucunun alan adı (alan adın yoksa <ip-tireli>.sslip.io; Let's Encrypt otomatik).
+# /media → Instagram'ın çektiği görsel/videolar (herkese açık)
+# /panel → takip paneli (şifreli; şifre özeti PANEL_HASH yerine yazılır)
+MEDIA_HOST {
+	handle_path /media/* {
+		@private path /*/_work/*
+		respond @private 404
+		root * /opt/social-autopilot/output
+		file_server
+	}
+	handle /ig/* {
+		reverse_proxy 127.0.0.1:8090
+	}
+	redir /panel /panel/
+	handle /panel/* {
+		basic_auth {
+			admin PANEL_HASH
+		}
+		uri strip_prefix /panel
+		root * /opt/social-autopilot/panel
+		file_server
+	}
+	respond 404
+}

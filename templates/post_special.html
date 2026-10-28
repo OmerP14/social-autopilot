@@ -1,0 +1,24 @@
+{# Özel gün: big (ör. "29"), big_label (ör. "Ekim"), headline, sub, color (varsayılan özel gün kırmızısı) #}
+{% extends "base.html" %}
+{% block style %}
+  body { background: {{ color or "var(--special)" }}; }
+  .logo svg { color: var(--text); }
+  .footer { border-top-color: rgba(244,239,233,.4); }
+  .footer .label { color: rgba(244,239,233,.75); }
+  .big { position: absolute; left: var(--pad); top: 230px; line-height: .8; }
+  .big .num { font-size: 400px; font-weight: 900; letter-spacing: -0.05em; }
+  .big .lbl { font-family: "Instrument Serif", serif; font-style: italic; font-size: 120px; margin-top: 10px; }
+  .copy { position: absolute; left: var(--pad); right: var(--pad); bottom: 170px; }
+  .copy .headline { font-size: 64px; font-weight: 700; line-height: 1.08; letter-spacing: -0.015em; max-width: 880px; }
+  .copy .sub { margin-top: 20px; color: rgba(244,239,233,.8); }
+{% endblock %}
+{% block body %}
+  <div class="big">
+    <div class="num">{{ big }}</div>
+    {% if big_label %}<div class="lbl">{{ big_label }}</div>{% endif %}
+  </div>
+  <div class="copy">
+    <div class="headline">{{ headline | emph }}</div>
+    {% if sub %}<div class="sub">{{ sub }}</div>{% endif %}
+  </div>
+{% endblock %}

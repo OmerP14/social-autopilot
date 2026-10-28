@@ -1,0 +1,29 @@
+[Unit]
+Description=Social Autopilot (Telegram onay botu + zamanlayıcı)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=autopilot
+WorkingDirectory=/opt/social-autopilot
+ExecStart=/home/autopilot/.local/bin/uv run --frozen python -m app.bot
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+# Küçük sunucu (1 GB RAM + swap): üretim sırasında belleği sınırlı tut
+MemoryMax=1800M
+# Sertleştirme: yetki yükseltme yok, sistem dosyaları salt okunur, ayrı /tmp (Chromium ile denendi)
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+{# Editoryal çerçeveli post: zeminde (genelde krem) kenar boşluklu fotoğraf + altında başlık. photo, kicker, headline, sub #}
+{% extends "base.html" %}
+{% block style %}
+  .frame { position: absolute; left: var(--pad); right: var(--pad); top: 190px; height: 720px; overflow: hidden; border-radius: 6px; }
+  .frame .photo { position: absolute; }
+  .copy { position: absolute; left: var(--pad); right: var(--pad); top: 950px; }
+  .copy .kicker { margin-bottom: 16px; }
+  .copy .headline { font-size: 66px; line-height: 1.02; }
+  .copy .headline em { color: var(--accent); }
+  .copy .sub { margin-top: 14px; font-size: 26px; }
+{% endblock %}
+{% block body %}
+  {% if photo %}<div class="frame"><img class="photo" src="{{ photo }}"></div>{% endif %}
+  <div class="copy">
+    {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    <div class="headline">{{ headline | emph }}</div>
+    {% if sub %}<div class="sub">{{ sub }}</div>{% endif %}
+  </div>
+{% endblock %}

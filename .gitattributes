@@ -1,0 +1,5 @@
+# Kod Linux sunucuda çalışır: Windows'ta da dosyalar LF satır sonuyla kalsın (sync.sh dosyaları olduğu gibi gönderir)
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.ttf binary

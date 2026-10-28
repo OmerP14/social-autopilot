@@ -1,0 +1,20 @@
+{# Firma sahibine özel hoş geldin kartı (firmanın logosu ve renkleriyle). name, firm, steps[] #}
+{% extends "base.html" %}
+{% block style %}
+  .glow { position: absolute; inset: 0; background: radial-gradient(circle at 85% 12%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 55%); }
+  .copy { position: absolute; left: var(--pad); right: var(--pad); top: 280px; }
+  .hello { font-size: 42px; color: var(--muted); margin-bottom: 22px; }
+  .copy .headline { font-size: 92px; line-height: 1; }
+  .copy .headline em { color: var(--accent); }
+  .steps { margin-top: 64px; }
+  .steps div { display: flex; gap: 26px; align-items: center; padding: 24px 0; border-top: 1px solid var(--line); font-size: 34px; }
+  .steps b { width: 60px; height: 60px; border-radius: 50%; background: var(--accent); color: var(--bg); display: grid; place-items: center; font-size: 28px; flex: none; }
+{% endblock %}
+{% block body %}
+  <div class="glow"></div>
+  <div class="copy">
+    <div class="hello">Merhaba {{ name }} 👋</div>
+    <div class="headline">{{ firm }}<br>sosyal medya asistanınız <em>hazır.</em></div>
+    <div class="steps">{% for s in steps %}<div><b>{{ loop.index }}</b>{{ s }}</div>{% endfor %}</div>
+  </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{# Tipografik story: kicker, headline, steps[] (opsiyonel), sub, cta #}
+{% extends "base.html" %}
+{% block style %}
+  .logo { top: 230px; }
+  .copy { position: absolute; left: var(--pad); right: var(--pad); top: 470px; }
+  .rule { width: 96px; height: 6px; background: var(--accent); margin-bottom: 44px; }
+  .copy .kicker { margin-bottom: 30px; }
+  .copy .headline { font-size: 118px; }
+  .copy .headline em { color: var(--accent); }
+  .copy .sub { margin-top: 40px; font-size: 34px; }
+  .steps { margin-top: 70px; counter-reset: s; }
+  .steps div { counter-increment: s; display: flex; gap: 28px; align-items: baseline; padding: 26px 0; border-top: 1px solid var(--line); font-size: 36px; line-height: 1.3; }
+  .steps div::before { content: "0" counter(s); font-size: 24px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
+  .cta { position: absolute; left: var(--pad); bottom: 290px; z-index: 3; display: flex; align-items: center; gap: 16px;
+         background: var(--accent); color: var(--bg); font-size: 30px; font-weight: 700; padding: 22px 34px; border-radius: 999px; }
+  .footer { bottom: 230px; border-top: 0; padding-top: 0; justify-content: flex-end; font-size: 24px; }
+  .footer > div:first-child { display: none; }
+{% endblock %}
+{% block body %}
+  <div class="copy">
+    <div class="rule"></div>
+    {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    <div class="headline">{{ headline | emph }}</div>
+    {% if sub %}<div class="sub">{{ sub }}</div>{% endif %}
+    {% if steps %}<div class="steps">{% for s in steps %}<div>{{ s }}</div>{% endfor %}</div>{% endif %}
+  </div>
+  <div class="cta">{{ cta or story_cta }} <span>&#8594;</span></div>
+{% endblock %}

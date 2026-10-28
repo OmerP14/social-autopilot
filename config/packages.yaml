@@ -1,0 +1,76 @@
+# Müşteri paketleri — firmaya paketi YÖNETİCİ atar (müşteri sadece değişiklik isteyebilir).
+#   posts / stories / reels : HAFTALIK içerik hakkı (plan + özel istekler bu sayıyı aşamaz)
+#   revisions               : AYLIK düzeltme hakkı
+#   custom                  : AYLIK özel istek hakkı (post/story 1, reels/video story 2 hak düşer)
+#   credits                 : AYLIK kredi; senin için en fazla maliyet = credits × credit_value_tl TL
+#   ai_images               : AYLIK yapay zekâ atmosfer görseli (gerçekçilik kontrolünden geçen)
+#   ai_videos               : AYLIK yapay zekâ video çekimi (video sağlayıcı bağlıysa)
+#   voiceover               : Reels'e yapay zekâ seslendirme
+#   photos                  : HAFTALIK fotoğraf yükleme sınırı
+#   price                   : müşteriye gösterilecek fiyat yazısı (boş bırakılabilir)
+baslangic:
+  name: Başlangıç
+  posts: 2
+  stories: 3
+  reels: 0
+  revisions: 4
+  custom: 2        # AYLIK özel istek hakkı (reels/video 2 hak)
+  credits: 1000     # tavan 500 TL
+  ai_images: 4
+  ai_videos: 0
+  voiceover: false
+  photos: 30
+  price: "3.500 TL/ay"
+standart:
+  name: Standart
+  posts: 3
+  stories: 4
+  reels: 1
+  revisions: 8
+  custom: 4        # AYLIK özel istek hakkı (reels/video 2 hak)
+  credits: 2000     # tavan 1000 TL
+  ai_images: 8
+  ai_videos: 0
+  voiceover: false
+  photos: 40
+  price: "5.000 TL/ay"
+premium:
+  name: Premium
+  posts: 5
+  stories: 7
+  reels: 2
+  revisions: 15
+  custom: 8        # AYLIK özel istek hakkı (reels/video 2 hak)
+  credits: 3000     # tavan 1500 TL
+  ai_images: 15
+  ai_videos: 4
+  voiceover: true
+  photos: 60
+  price: "6.000 TL/ay"
+deneme:             # yeni firmaya 1 hafta ücretsiz deneme (satışta görünmez)
+  name: Deneme (1 hafta)
+  trial: true
+  days: 7
+  posts: 3
+  stories: 3
+  reels: 1
+  revisions: 2
+  custom: 1        # AYLIK özel istek hakkı (reels/video 2 hak)
+  credits: 150      # tavan 75 TL (gerçekte ~25-35 TL)
+  ai_images: 1
+  ai_videos: 0
+  voiceover: true   # tek reels'te seslendirmeyi göstermek için (~1 TL)
+  photos: 20
+  price: "ücretsiz"
+
+# 1 kredi kaç TL maliyet
+credit_value_tl: 0.5
+# Paketi olmayan firmalar için aylık tavan (USD); kendi firman (tam yetkili) için sınır yok
+budget_usd_month: 22
+# Abonelik bitince kaç gün daha hizmet verilsin (sonra otomatik askıya alınır)
+grace_days: 3
+usd_try: 50
+# Sabit aylık giderler ($) — maliyet raporuna eklenir
+fixed_usd_month:
+  Sunucu: 6
+  Seslendirme aboneliği: 6

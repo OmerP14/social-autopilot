@@ -1,0 +1,18 @@
+{# Tipografik post (fotoğrafsız): kicker, headline, sub #}
+{% extends "base.html" %}
+{% block style %}
+  .copy { position: absolute; left: var(--pad); right: var(--pad); top: 50%; transform: translateY(-46%); }
+  .rule { width: 96px; height: 6px; background: var(--accent); margin-bottom: 44px; }
+  .copy .kicker { margin-bottom: 30px; }
+  .copy .headline { font-size: 124px; }
+  .copy .headline em { color: var(--accent); }
+  .copy .sub { margin-top: 44px; max-width: 760px; }
+{% endblock %}
+{% block body %}
+  <div class="copy">
+    <div class="rule"></div>
+    {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    <div class="headline">{{ headline | emph }}</div>
+    {% if sub %}<div class="sub">{{ sub }}</div>{% endif %}
+  </div>
+{% endblock %}

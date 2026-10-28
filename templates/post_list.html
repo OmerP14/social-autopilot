@@ -1,0 +1,22 @@
+{# Numaralı liste postu: kicker, headline, steps[] (3-4 madde), sub #}
+{% extends "base.html" %}
+{% block style %}
+  .copy { position: absolute; left: var(--pad); right: var(--pad); top: 230px; }
+  .copy .kicker { margin-bottom: 24px; }
+  .copy .headline { font-size: 86px; line-height: 1; }
+  .copy .headline em { color: var(--accent); }
+  .list { list-style: none; margin: 56px 0 0; padding: 0; counter-reset: n; }
+  .list li { counter-increment: n; display: flex; gap: 30px; align-items: baseline; padding: 26px 0;
+             border-top: 1px solid var(--line); font-size: 38px; font-weight: 500; line-height: 1.25; }
+  .list li::before { content: counter(n, decimal-leading-zero); font-size: 26px; font-weight: 800;
+                     color: var(--accent); letter-spacing: .06em; min-width: 46px; }
+  .copy .sub { margin-top: 30px; font-size: 26px; }
+{% endblock %}
+{% block body %}
+  <div class="copy">
+    {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    <div class="headline">{{ headline | emph }}</div>
+    <ol class="list">{% for s in steps %}<li>{{ s }}</li>{% endfor %}</ol>
+    {% if sub %}<div class="sub">{{ sub }}</div>{% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{# Rota kartı: photo (üst bant), kicker, origin, destination, origin_label, destination_label, features[] #}
+{% extends "base.html" %}
+{% block style %}
+  .band { position: absolute; inset: 0 0 auto 0; height: 600px; overflow: hidden; }
+  .band .photo { position: absolute; }
+  .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(13,13,13,.5), rgba(13,13,13,0) 40%, rgba(13,13,13,0) 70%, var(--bg)); }
+  .route { position: absolute; left: var(--pad); right: var(--pad); top: 640px; }
+  .route .kicker { margin-bottom: 36px; }
+  .stop .label { font-size: 19px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .stop .name { font-size: 72px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .stop.to .name em { color: var(--accent); font-size: 1.15em; }
+  .line { display: flex; align-items: center; gap: 18px; margin: 30px 0 30px 4px; }
+  .line .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); }
+  .line .bar { width: 220px; height: 2px; background: repeating-linear-gradient(90deg, var(--accent) 0 14px, transparent 14px 24px); }
+  .line .arrow { font-size: 30px; color: var(--accent); line-height: 1; }
+  .features { display: flex; gap: 14px; margin-top: 48px; flex-wrap: wrap; }
+  .features div { font-size: 22px; font-weight: 500; padding: 12px 22px; border: 1px solid var(--line); border-radius: 999px; }
+{% endblock %}
+{% block body %}
+  {% if photo %}<div class="band"><img class="photo" src="{{ photo }}"></div>{% endif %}
+  <div class="route">
+    {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    <div class="stop from">
+      <div class="label">{{ origin_label or ("Nereden" if ui_lang == "tr" else "From") }}</div>
+      <div class="name">{{ origin | emph }}</div>
+    </div>
+    <div class="line"><div class="dot"></div><div class="bar"></div><div class="arrow">&#8594;</div></div>
+    <div class="stop to">
+      <div class="label">{{ destination_label or ("Nereye" if ui_lang == "tr" else "To") }}</div>
+      <div class="name">{{ destination | emph }}</div>
+    </div>
+    {% if features %}<div class="features">{% for f in features %}<div>{{ f }}</div>{% endfor %}</div>{% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+[project]
+name = "social-autopilot"
+version = "0.1.0"
+description = "Multi-tenant Instagram content autopilot: AI planning, HTML/video rendering, Telegram approval, scheduled publishing"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.14.5",
+    "anthropic>=1.13.0",
+    "apscheduler>=3.11.3",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "numpy>=2.5.4",
+    "openai>=3.31.0",
+    "pillow>=12.3.0",
+    "playwright>=1.63.0",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1.0",
+    "python-telegram-bot[job-queue]>=22.8",
+    "pyyaml>=6.0",
+    "qrcode[pil]>=8.2",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.6"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

@@ -1,0 +1,21 @@
+{# Video sahne yazısı (şeffaf). part=kicker|headline|sub: aynı yerleşimde sadece o parça görünür,
+   böylece parçalar ayrı ayrı canlandırılabilir. #}
+{% extends "base.html" %}
+{% block style %}
+  html, body { background: transparent !important; }
+  .copy { position: absolute; left: var(--pad); right: var(--pad); bottom: 430px; color: #F4EFE9; }
+  .copy .kicker { margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; }
+  .copy .kicker::before { content: ""; width: 44px; height: 4px; background: var(--accent); display: inline-block; }
+  .copy .headline { font-size: 104px; line-height: .98; text-shadow: 0 4px 30px rgba(0,0,0,.35); }
+  .copy .headline em { color: #F4EFE9; }
+  .copy .sub { margin-top: 22px; font-size: 34px; color: rgba(244,239,233,.88); }
+  .hide { visibility: hidden; }
+  .logo, .footer { display: none; }
+{% endblock %}
+{% block body %}
+  <div class="copy">
+    <div class="kicker {{ '' if part == 'kicker' else 'hide' }}">{{ kicker or '·' }}</div>
+    <div class="headline {{ '' if part == 'headline' else 'hide' }}">{{ (headline or '·') | emph }}</div>
+    {% if sub %}<div class="sub {{ '' if part == 'sub' else 'hide' }}">{{ sub }}</div>{% endif %}
+  </div>
+{% endblock %}

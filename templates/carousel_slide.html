@@ -1,0 +1,17 @@
+{# Carousel iç karesi: tam ekran fotoğraf + alt köşede kısa açıklama ve sayfa numarası. photo, caption, index, total #}
+{% extends "base.html" %}
+{% block style %}
+  .shade { position: absolute; inset: auto 0 0 0; height: 34%; background: linear-gradient(rgba(13,13,13,0), rgba(13,13,13,.85)); }
+  .cap { position: absolute; left: var(--pad); right: 220px; bottom: 80px; color: #F4EFE9;
+         font-size: 46px; font-weight: 700; line-height: 1.1; letter-spacing: -0.015em; }
+  .cap em { color: #F4EFE9; }
+  .page { position: absolute; right: var(--pad); bottom: 86px; color: rgba(244,239,233,.8); font-size: 24px; font-weight: 600; letter-spacing: .1em; }
+  .logo { width: 150px; }
+  .footer { display: none; }
+{% endblock %}
+{% block body %}
+  <img class="photo" src="{{ photo }}">
+  <div class="shade"></div>
+  {% if caption %}<div class="cap">{{ caption | emph }}</div>{% endif %}
+  <div class="page">{{ index }} / {{ total }}</div>
+{% endblock %}

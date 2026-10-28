@@ -1,0 +1,112 @@
+# Test firması — testlerde kullanılan kurgusal profil (gerçek bir işletme değildir).
+
+slug: demo
+active: true
+instagram_handle: demoviptransfer
+
+business:
+  name: Demo VIP Transfer
+  legal: ""
+  license: ""
+  phone: "+90 555 000 00 00"
+  whatsapp: "+90 555 000 00 00"
+  email: hello@example.com
+  website: example.com
+  address: ""
+  city: İzmir
+  hours: "Her gün 08:00–22:00; transfer için WhatsApp"
+  # Instagram biyografisi ve slogan (ton için referans)
+  bio: "Airport & VIP Transfer • Chauffeur service • İzmir"
+  slogan: "Arrive relaxed."
+  services:
+    - Havalimanı ve otel transferi (İzmir Adnan Menderes Havalimanı, kapıda karşılama)
+    - VIP transfer ve karşılama
+    - Şoförlü araç kiralama
+    - Şoförlü minibüs kiralama
+    - Özel günler için VIP araç (düğün, nişan vb.)
+    - Organizasyon ve fuar transferleri
+    - Günübirlik turlar (Efes, Şirince, Çeşme, Alaçatı)
+    - Şehirlerarası VIP transfer (İzmir–İstanbul, İzmir–Ankara, İzmir–Antalya)
+  why_us:
+    - Konforlu araçlar
+    - Sabit fiyat
+    - Kapıda karşılama
+    - Güler yüzlü hizmet
+  vehicles:
+    # klasör: clients/demo/photos/vehicles/<klasör>
+    - { name: VIP Van, folder: VIP Van, notes: "siyah dış, deri iç, ambiyans ışık" }
+    - { name: VIP Minibüs, folder: VIP Minibus, notes: "geniş deri koltuklar, TV" }
+    - { name: Sedan, folder: Sedan, notes: "siyah sedan" }
+  # Fiyat/kapasite bilgisi yok: içerikte [FİYAT] yer tutucusu bırakılır, Telegram'dan sorulur.
+  prices_known: false
+
+audience:
+  primary: İzmir'e gelen yabancı turistler
+  secondary: Yerli ve kurumsal müşteriler
+  languages: [en, tr]   # görselde İngilizce başlık + altında küçük Türkçe; açıklama önce İngilizce sonra Türkçe
+  ui_lang: en
+
+brand:
+  colors:
+    background: "#0D0D0D"
+    accent: "#F07C24"
+    accent_on_light: "#B4561A"
+    text: "#F4EFE9"
+    muted: "#A49C94"
+    special_day: "#C8102E"
+  fonts:
+    heading: Archivo
+    body: Archivo
+    emphasis: Instrument Serif   # italik vurgu kelimesi
+  logo_svg: logo.svg
+  logo_text: { top: DEMO, bottom: VIP TRANSFER }
+  story_cta: Reply / DM to book
+
+content:
+  posts_per_month: 8
+  stories_per_month: [8, 12]   # fotoğraflı/tipografik story
+  reels_per_month: 3           # fotoğraflardan otomatik kurgulanan dikey video (Reels)
+  story_videos_per_month: 2    # kısa video story
+  best_times: { weekday: "19:00", weekend: "11:00" }
+  hashtags_pool: [izmir, izmirtransfer, airporttransfer, viptransfer, turkeytravel, visitizmir, ephesus, cesme,
+                  alacati, vipminibus, şoförlüaraç]
+  hashtags_per_post: [5, 8]
+  # Planlama sıklığı: weekly (her hafta plan_day günü gelecek hafta) ya da monthly (her ayın 25'i).
+  # Telegram'dan /siklik haftalik|aylik ile değiştirilebilir.
+  cadence: monthly
+  plan_day: sunday            # haftalıkta planın geleceği gün
+  plan_time: "10:00"
+  # Aylık araştırmada ayrıca bakılacaklar
+  research_focus: "İzmir fuarları ve kongreleri; İzmir'e gelen yabancı turist yoğunluğu; kruvaziyer sezonu; bayram ve tatil yoğunluğu"
+  # Konu dağılımı: planlayıcı içerikleri bu oranlara yakın dağıtır
+  content_mix:
+    - "Havalimanı ve otel transferi, VIP karşılama (%30)"
+    - "Şehirlerarası VIP transfer — her seferinde farklı bir rota, abartmadan (%25)"
+    - "Günübirlik turlar: Efes, Şirince, Çeşme, Alaçatı (%20)"
+    - "Şehir içi İzmir: iş toplantıları, fuar/kongre (%15)"
+    - "Özel günler ve gruplar: düğün, organizasyon, VIP minibüs (%10)"
+  # Planlayıcı her ay bunlara ek olarak internetten o ayın etkinliklerini araştırır.
+  local_events:
+    - "İzmir Enternasyonal Fuarı (Eylül)"
+    - "Kruvaziyer sezonu (Nisan–Ekim)"
+    - "Alaçatı Ot Festivali (Nisan)"
+    - "Düğün sezonu (özel gün VIP araç)"
+  rules:
+    - Araç görselleri SADECE firmanın kendi fotoğraflarından; AI ya da internetten araç görseli asla yok.
+    - İnternet görselleri sadece telifsiz kaynaktan (Unsplash/Pexels), gerçek fotoğraf ve konuyla ilgili olur.
+    - Gerçek yapıların AI taklidi yok.
+    - Uydurma rakam, fiyat, kapasite yok.
+
+photos:
+  # Öncelik: kendi fotoğrafların (photos/vehicles, photos/city) > telifsiz stok (Unsplash/Pexels → photos/_stock/<konu>)
+  # Stok indirme: uv run python -m app.stock --client demo
+  stock:
+    min_long_edge: 3840     # 4K ve üstü
+    per_query: 3
+    # açıklamasında bu kelimeler geçen fotoğraflar atlanır
+    exclude_words: [flower, rose, blossom, food, dish, plate, cat, dog, selfie]
+    topics:
+      izmir: ["Izmir Turkey", "Izmir clock tower", "Izmir seafront"]
+      ephesus: ["Ephesus ancient city", "Library of Celsus"]
+      travel: ["airport arrivals hall", "luggage airport terminal", "airplane window view", "airport runway sunset"]
+      lifestyle: ["coffee cup in car", "business traveler phone car", "leather seat detail", "night city road lights"]

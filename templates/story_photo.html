@@ -1,0 +1,31 @@
+{# Fotoğraflı story: photo, kicker, headline, sub, cta, text_top #}
+{% extends "base.html" %}
+{% block style %}
+  /* Instagram arayüzü üstte ~200px, altta ~220px'i kapatır; içerik bu alanların dışında. */
+  .logo { top: 230px; }
+  .shade-top { position: absolute; inset: 0 0 auto 0; height: 520px; background: linear-gradient(rgba(13,13,13,.6), rgba(13,13,13,0)); }
+  .shade { position: absolute; inset: auto 0 0 0; height: 68%; background: linear-gradient(rgba(13,13,13,0), rgba(13,13,13,.86) 40%, rgba(13,13,13,.96)); }
+  .copy { position: absolute; left: var(--pad); right: var(--pad); bottom: 430px; }
+  .copy .kicker { margin-bottom: 26px; }
+  .copy .headline { font-size: 104px; }
+  .copy .sub { margin-top: 26px; font-size: 34px; }
+  .cta { position: absolute; left: var(--pad); bottom: 290px; z-index: 3; display: flex; align-items: center; gap: 16px;
+         background: var(--accent); color: var(--bg); font-size: 30px; font-weight: 700; padding: 22px 34px; border-radius: 999px; }
+  .footer { bottom: 230px; border-top: 0; padding-top: 0; justify-content: flex-end; font-size: 24px; }
+  .footer > div:first-child { display: none; }
+  /* Yazı üstte: konu (bina, manzara) alt yarıdaysa */
+  body.text-top .shade-top { height: 62%; background: linear-gradient(rgba(13,13,13,.92), rgba(13,13,13,.82) 55%, rgba(13,13,13,0)); }
+  body.text-top .shade { height: 30%; background: linear-gradient(rgba(13,13,13,0), rgba(13,13,13,.85)); }
+  body.text-top .copy { bottom: auto; top: 400px; }
+{% endblock %}
+{% block body %}
+  <img class="photo" src="{{ photo }}">
+  <div class="shade-top"></div>
+  <div class="shade"></div>
+  <div class="copy">
+    {% if kicker %}<div class="kicker">{{ kicker }}</div>{% endif %}
+    <div class="headline">{{ headline | emph }}</div>
+    {% if sub %}<div class="sub">{{ sub }}</div>{% endif %}
+  </div>
+  <div class="cta">{{ cta or story_cta }} <span>&#8594;</span></div>
+{% endblock %}
